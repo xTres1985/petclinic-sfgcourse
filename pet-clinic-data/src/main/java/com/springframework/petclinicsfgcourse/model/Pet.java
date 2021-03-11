@@ -1,4 +1,4 @@
-package com.springframework.model;
+package com.springframework.petclinicsfgcourse.model;
 
 import java.time.LocalDate;
 
