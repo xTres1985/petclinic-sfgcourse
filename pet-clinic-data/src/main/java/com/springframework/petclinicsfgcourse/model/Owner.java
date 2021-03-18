@@ -1,4 +1,4 @@
 package com.springframework.petclinicsfgcourse.model;
 
-public class Owner extends BaseEntity {
+public class Owner extends Person {
 }
