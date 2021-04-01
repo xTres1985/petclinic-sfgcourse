@@ -1,10 +1,7 @@
 package com.springframework.petclinicsfgcourse.bootstrap;
 
 import com.springframework.petclinicsfgcourse.model.*;
-import com.springframework.petclinicsfgcourse.services.OwnerService;
-import com.springframework.petclinicsfgcourse.services.PetTypeService;
-import com.springframework.petclinicsfgcourse.services.SpecialityService;
-import com.springframework.petclinicsfgcourse.services.VetService;
+import com.springframework.petclinicsfgcourse.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,14 +14,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
-
+    private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-                      SpecialityService specialityService) {
+                      SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -89,6 +87,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionasPet);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+
+        visitService.save(catVisit);
 
         System.out.println("Owners loaded....");
 
